@@ -1,0 +1,38 @@
+.navbar-nav li a {
+    color: $branco;
+    margin-right: 1rem;
+}
+
+.navbar-nav li.active a {
+    color: $color1;
+}
+
+#logotipo a img {
+    max-width: 300px;
+}
+
+#logotipoContainer {
+    padding: 2rem;
+}
+
+#tituloDaColecao .title {
+    float: right;
+    vertical-align: top;
+}
+#tituloDaColecao h1 .title {
+    font-size: 2rem;
+}
+#tituloDaColecao a .title {
+    color: $cinza;
+    vertical-align: top;
+}
+
+#mainMenu {
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+.btn-outline-color1 {
+    color: $color1;
+    border-color: $color1;
+}

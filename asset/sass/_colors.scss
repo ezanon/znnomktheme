@@ -1,0 +1,30 @@
+/* Paleta de cores */
+$preto : #333333;
+$branco : #fcfcfc;
+$cinza : #dddddd;
+$cinzaescuro : #888888;
+
+$color1 : #ed8838; // laranja vivo
+$color2 : #734719; // laranja escuro
+$color3 : #50564a; // verde escuro
+$color4 : #61675b; // verde medio
+$color5 : #7c8574; // verde claro
+
+
+/* classes de cores */
+.color1 {
+    background-color: $color1;
+}
+.color2 {
+    background-color: $color2;
+}
+.color3 {
+    background-color: $color3;
+    color: $branco;
+}
+.color4 {
+    background-color: $color4;
+}
+.color5 {
+    background-color: $color5;
+}
