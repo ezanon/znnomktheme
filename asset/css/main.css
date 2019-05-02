@@ -7611,6 +7611,18 @@ a.text-dark:hover, a.text-dark:focus {
 body {
   color: #fcfcfc; }
 
+#content {
+  padding: 1rem; }
+
+.container-fluid {
+  padding: 0; }
+
+.footer {
+  padding: 0.2rem; }
+
+.footer .text-muted {
+  font-size: 0.8rem; }
+
 .navbar-nav li a {
   color: #fcfcfc;
   margin-right: 1rem; }
@@ -7622,7 +7634,7 @@ body {
   max-width: 300px; }
 
 #logotipoContainer {
-  padding: 2rem; }
+  padding: 1rem; }
 
 #tituloDaColecao .title {
   float: right;
@@ -7671,5 +7683,32 @@ body {
 
 .card a:hover {
   text-decoration: none; }
+
+.browse-controls {
+  color: #fcfcfc; }
+
+.browse-controls select,
+.browse-controls option,
+.browse-controls button {
+  opacity: 0.9; }
+
+.pagination {
+  opacity: 0.9;
+  align-items: center; }
+
+.o-icon-prev {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+  margin-left: 1rem; }
+
+.o-icon-next {
+  font-size: 1.3rem;
+  margin-right: 0.5rem; }
+
+.row-count {
+  margin-left: 0.5rem; }
+
+.carousel-control-prev, .carousel-control-next {
+  opacity: 1; }
 
 /*# sourceMappingURL=main.css.map */

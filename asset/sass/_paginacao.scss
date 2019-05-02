@@ -1,0 +1,27 @@
+.browse-controls {
+    color: $branco;
+}
+.browse-controls select, 
+.browse-controls option, 
+.browse-controls button {
+    opacity: 0.9;
+}
+
+.pagination {
+    opacity: 0.9;
+    align-items: center;
+}
+
+.o-icon-prev {
+    font-size: 1.3rem;
+    margin-right: 0.5rem; 
+    margin-left: 1rem; 
+}
+.o-icon-next {
+    font-size: 1.3rem;
+    margin-right: 0.5rem; 
+}
+
+.row-count {
+    margin-left: 0.5rem;
+}

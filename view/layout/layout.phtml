@@ -24,9 +24,8 @@ $this->trigger('view.layout');
         <?php echo $this->headScript(); ?>
     </head>
     
-<?php //echo $this->htmlElement('body')->appendAttribute('class', 'd-flex flex-column h-100'); ?>
+<?php echo $this->htmlElement('body')->appendAttribute('class', 'container-fluid');; ?>
     
-<body class="d-flex flex-column h-100">
 <main role="main" class="flex-shrink-0"> 
 
    
@@ -34,12 +33,12 @@ $this->trigger('view.layout');
 
     <div id="logotipoContainer" class="container">
     <div class="row">
-        <div id="logotipo" class="col">
+        <div id="logotipo" class="col pl-0">
             <?php if ($this->themeSetting('logo')):?>
             <a href="<?php echo $site->url(); ?>"><img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>"></a> 
             <?php endif; ?>
         </div>
-        <div id="tituloDaColecao" class="col-8">
+        <div id="tituloDaColecao" class="col-8 pr-0">
             <a href="<?php echo $site->url(); ?>" class="site-title"><?php echo $this->pageTitle($site->title()); ?></a>
         </div>
     </div></div>
@@ -70,17 +69,15 @@ $this->trigger('view.layout');
 </div>           
 
 
-    <div id="content" class="container">
+    <div id="content" class="container mb-5">
             <?php echo $this->messages(); ?>
             <?php echo $this->content; ?>
         </div>
     
-    <footer class="footer mt-3 py-3 bg-dark">
+    <footer class="footer mt-3 bg-dark fixed-bottom">
         <div class="container">
             <span class="text-muted">
                 Direitos Reservados © 2019<?php if (date('Y')>2019) echo '-'.date('Y'); ?> Instituto de Geociências - Universidade de São Paulo <br>
-                Desenvolvido pela Seção Técnica de Informática - IGc/USP <br>  
-                <?php echo $this->translate('Powered by Omeka S'); ?>
             </span>
         </div>
     </footer>     
