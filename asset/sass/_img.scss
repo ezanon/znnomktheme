@@ -1,3 +1,8 @@
-.img-showed:hover {
+img.img-showed:hover {
     filter: sepia();
+}
+.img-box {
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
 }

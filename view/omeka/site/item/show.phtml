@@ -6,13 +6,13 @@ $embedMedia = $this->siteSetting('item_media_embed', false);
 $itemMedia = $item->media();
 ?>
 
-<?php echo $this->pageTitle($item->displayTitle(), 2); ?>
+<?php //echo $this->pageTitle($item->displayTitle(), 3); ?>
 
 <?php $this->trigger('view.show.before'); ?>
 
 <div class="row">
    
-    <div class="col-8">
+    <div class="col-12 col-sm">
     <!-- CARROSSEL 
         <?php if ($embedMedia && $itemMedia): 
             $i=0; ?>
@@ -35,34 +35,46 @@ $itemMedia = $item->media();
               </a>
             </div>
         <?php endif; ?>-->
-    <!-- THUMBS -->   
-        <div class="row">
+        
+        <!-- FOTOS EM CARDS COM DESCRIÇÃO -->                    
+        <div class="row ">
+            <div class="col">
                 <?php 
-                $c = count($itemMedia);
-                foreach ($itemMedia as $media): 
-                    if ($c<=3){
-                        $j = 12/$c;
-                        $col = 'col-' . $j;
-                    }
-                    else $col = 'col-3';   
-                ?>
-
-                    <div class="<?php echo $col; ?>">
-                        <a href="<?php echo $media->originalUrl(); ?>" >
-                            <img src="<?php echo $media->thumbnailUrl('square'); ?>" class="img-showed rounded img-fluid m-1" />
-                        </a>
+                foreach ($itemMedia as $media): ?> 
+                    <div class="card mb-2">
+                        <a href="<?php echo $media->originalUrl(); ?>"><img src="<?php echo $media->thumbnailUrl('large'); ?>"></a>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <?php if ($media->value('dcterms:date')) echo $media->value('dcterms:date') . ' : '; ?>
+                                <?php if ($media->value('dcterms:description')) echo $media->value('dcterms:description'); ?>
+                                <?php if ($media->value('dcterms:creator')) echo " <em>({$media->value('dcterms:creator')})</em>"; ?>
+                            </p>
+                        </div>
                     </div>
-
                 <?php endforeach; ?>
-        </div>
+            </div></div>                            
         
     </div>
 
 
    
     <div class="col">
-        <?php echo $item->displayValues(); ?>
+              
+        <h1 class="display-4"><?php echo $item->value('dcterms:title'); ?></h1>
+        <?php if ($item->value('dcterms:date')): ?> <p><em><?php echo $item->value('dcterms:date'); ?></em></p> <?php endif; ?>
+        <?php if ($item->value('dcterms:abstract')): ?> <p><?php echo $item->value('dcterms:abstract'); ?></p> <?php endif; ?>
+        <?php 
+            $creators = $item->value('dcterms:creator', array('all' => true));
+            if (count($creators)>0) echo "<h5>Créditos</h5>";
+            foreach ($creators as $creator): 
+                echo $creator . "<br>\n"; 
+            endforeach; 
+        ?>
+        
+        <?php //echo $item->displayValues(); ?>
 
+ <!--       
+        
         <div class="property">
             <?php $itemSets = $item->itemSets(); ?>
             <?php if (count($itemSets) > 0): ?>
@@ -96,6 +108,6 @@ $itemMedia = $item->media();
         <?php endif; ?>
 
         <?php $this->trigger('view.show.after'); ?>
-    </div>
+    </div> -->
 
 </div>
