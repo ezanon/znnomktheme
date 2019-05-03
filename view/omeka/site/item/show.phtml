@@ -11,64 +11,91 @@ $itemMedia = $item->media();
 <?php $this->trigger('view.show.before'); ?>
 
 <div class="row">
-    <div class="col">
-<?php if ($embedMedia && $itemMedia): 
-    $i=0; ?>
-    <div id="carouselFotos" class="carousel slide carousel-fade" data-ride="carousel">
-        <div class="carousel-inner">
-            <?php foreach ($itemMedia as $media):
-                if ($i==0) echo '<div class="carousel-item active" data-interval="3000">' . $media->render() . '</div>' . "\n";
-                else echo '<div class="carousel-item" data-interval="3000">' . $media->render() . '</div>' . "\n";
-                $i++;
-            endforeach;
-            ?>
+   
+    <div class="col-8">
+    <!-- CARROSSEL 
+        <?php if ($embedMedia && $itemMedia): 
+            $i=0; ?>
+            <div id="carouselFotos" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                    <?php foreach ($itemMedia as $media):
+                        if ($i==0) echo '<div class="carousel-item active" data-interval="3000">' . $media->render() . '</div>' . "\n";
+                        else echo '<div class="carousel-item" data-interval="3000">' . $media->render() . '</div>' . "\n";
+                        $i++;
+                    endforeach;
+                    ?>
+                </div>
+            <a class="carousel-control-prev" href="#carouselFotos" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselFotos" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+        <?php endif; ?>-->
+    <!-- THUMBS -->   
+        <div class="row">
+                <?php 
+                $c = count($itemMedia);
+                foreach ($itemMedia as $media): 
+                    if ($c<=3){
+                        $j = 12/$c;
+                        $col = 'col-' . $j;
+                    }
+                    else $col = 'col-3';   
+                ?>
+
+                    <div class="<?php echo $col; ?>">
+                        <a href="<?php echo $media->originalUrl(); ?>" >
+                            <img src="<?php echo $media->thumbnailUrl('square'); ?>" class="img-showed rounded img-fluid m-1" />
+                        </a>
+                    </div>
+
+                <?php endforeach; ?>
         </div>
-    <a class="carousel-control-prev" href="#carouselFotos" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselFotos" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-<?php endif; ?>
-</div>
-    <div class="col">
-<?php echo $item->displayValues(); ?>
-    
-<div class="property">
-    <?php $itemSets = $item->itemSets(); ?>
-    <?php if (count($itemSets) > 0): ?>
-        <h4><?php echo $translate('Item sets'); ?></h4>
-        <?php foreach ($itemSets as $itemSet): ?>
-            <div class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSet->displayTitle(); ?></a></div>
-        <?php endforeach; ?>
-    <?php endif; ?>
-</div>
         
+    </div>
 
 
-<?php if (!$embedMedia && $itemMedia): ?>
-<div class="media-list">
-    <?php foreach ($itemMedia as $media): ?>
-        <?php echo $media->linkPretty(); ?>
-    <?php endforeach; ?>
-</div>
-<?php endif; ?>
+   
+    <div class="col">
+        <?php echo $item->displayValues(); ?>
 
-<?php
-$page = $this->params()->fromQuery('page', 1);
-$property = $this->params()->fromQuery('property');
-$subjectValues = $item->displaySubjectValues($page, 25, $property);
-?>
-<?php if ($subjectValues): ?>
-<div id="item-linked">
-    <h3><?php echo $translate('Linked resources'); ?></h3>
-    <?php echo $subjectValues; ?>
-</div>
-<?php endif; ?>
+        <div class="property">
+            <?php $itemSets = $item->itemSets(); ?>
+            <?php if (count($itemSets) > 0): ?>
+                <h4><?php echo $translate('Item sets'); ?></h4>
+                <?php foreach ($itemSets as $itemSet): ?>
+                    <div class="value"><a href="<?php echo $escape($itemSet->url()); ?>"><?php echo $itemSet->displayTitle(); ?></a></div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
 
-<?php $this->trigger('view.show.after'); ?>
-</div>
+
+
+        <?php if (!$embedMedia && $itemMedia): ?>
+        <div class="media-list">
+            <?php foreach ($itemMedia as $media): ?>
+                <?php echo $media->linkPretty(); ?>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
+
+        <?php
+        $page = $this->params()->fromQuery('page', 1);
+        $property = $this->params()->fromQuery('property');
+        $subjectValues = $item->displaySubjectValues($page, 25, $property);
+        ?>
+        <?php if ($subjectValues): ?>
+        <div id="item-linked">
+            <h3><?php echo $translate('Linked resources'); ?></h3>
+            <?php echo $subjectValues; ?>
+        </div>
+        <?php endif; ?>
+
+        <?php $this->trigger('view.show.after'); ?>
+    </div>
+
 </div>

@@ -1,3 +1,7 @@
 .carousel-control-prev, .carousel-control-next {
     opacity: 1;
 }
+
+.modal.and.carousel {
+  position: fixed; // Needed because the carousel overrides the position property
+}

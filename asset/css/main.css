@@ -7711,4 +7711,10 @@ body {
 .carousel-control-prev, .carousel-control-next {
   opacity: 1; }
 
+.modal.and.carousel {
+  position: fixed; }
+
+.img-showed:hover {
+  filter: sepia(); }
+
 /*# sourceMappingURL=main.css.map */
