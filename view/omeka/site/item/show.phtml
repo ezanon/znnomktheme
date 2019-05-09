@@ -10,6 +10,7 @@ $itemMedia = $item->media();
 
 <?php $this->trigger('view.show.before'); ?>
 
+<div class="blocks">
 <div class="row">
    
     <div class="col-12 col-sm">
@@ -43,13 +44,17 @@ $itemMedia = $item->media();
                 foreach ($itemMedia as $media): ?> 
                     <div class="card mb-2">
                         <a href="<?php echo $media->originalUrl(); ?>"><img src="<?php echo $media->thumbnailUrl('large'); ?>"></a>
-                        <div class="card-body">
-                            <p class="card-text">
-                                <?php if ($media->value('dcterms:date')) echo $media->value('dcterms:date') . ' : '; ?>
-                                <?php if ($media->value('dcterms:description')) echo $media->value('dcterms:description'); ?>
-                                <?php if ($media->value('dcterms:creator')) echo " <em>({$media->value('dcterms:creator')})</em>"; ?>
-                            </p>
-                        </div>
+                        <?php $card = FALSE; ?>
+                        <?php if ($media->value('dcterms:date')) $card.= $media->value('dcterms:date') . ' : '; ?>
+                        <?php if ($media->value('dcterms:description')) $card.= $media->value('dcterms:description'); ?>
+                        <?php if ($media->value('dcterms:creator')) $card.= " <em>({$media->value('dcterms:creator')})</em>"; ?>
+                        <?php if ($card): ?>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    <?php echo $card; ?>
+                                </p>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
             </div></div>                            
@@ -65,7 +70,7 @@ $itemMedia = $item->media();
         <?php if ($item->value('dcterms:abstract')): ?> <p><?php echo $item->value('dcterms:abstract'); ?></p> <?php endif; ?>
         <?php 
             $creators = $item->value('dcterms:creator', array('all' => true));
-            if (count($creators)>0) echo "<h5>Créditos</h5>";
+            if (count($creators)>0) echo "<h4>Créditos</h4>";
             foreach ($creators as $creator): 
                 echo $creator . "<br>\n"; 
             endforeach; 
@@ -110,4 +115,5 @@ $itemMedia = $item->media();
         <?php $this->trigger('view.show.after'); ?>
     </div> -->
 
+</div>
 </div>
